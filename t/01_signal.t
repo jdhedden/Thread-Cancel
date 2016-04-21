@@ -16,7 +16,13 @@ use Test::More 'tests' => 9;
 
 use_ok('Thread::Cancel', 'SIGILL');
 
-my $thr = threads->create(sub { while (1) { } });
+sub test_loop
+{
+    my $x = 1;
+    while ($x > 0) { threads->yield(); }
+}
+
+my $thr = threads->create('test_loop');
 ok($thr, 'Thread created');
 ok($thr->is_running(), 'Thread running');
 ok(! $thr->is_detached(), 'Thread not detached');
@@ -33,7 +39,7 @@ SKIP: {
         threads->exit();
     };
 
-    $thr = threads->create(sub { while (1) { } });
+    $thr = threads->create('test_loop');
     ok(! $thr->cancel(), 'Sent cancel signal');
     threads->yield();
     sleep(1);

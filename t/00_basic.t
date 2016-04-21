@@ -16,18 +16,19 @@ use Test::More 'tests' => 28;
 
 use_ok('Thread::Cancel');
 
-eval {
-    require Thread::Suspend;
-    Thread::Suspend->import();
-};
-
 if ($Thread::Cancel::VERSION) {
     diag('Testing Thread::Cancel ' . $Thread::Cancel::VERSION);
 }
 
 can_ok('threads', qw(cancel));
 
-my $thr = threads->create(sub { while (1) { } });
+sub test_loop
+{
+    my $x = 1;
+    while ($x > 0) { threads->yield(); }
+}
+
+my $thr = threads->create('test_loop');
 ok($thr, 'Thread created');
 ok($thr->is_running(), 'Thread running');
 ok(! $thr->is_detached(), 'Thread not detached');
@@ -43,8 +44,8 @@ sleep(1);
 ok(! $thr->is_running(), 'Thread not running');
 ok($thr->is_detached(), 'Thread detached');
 
-$thr = threads->create(sub { while (1) { } });
-my $thr2 = threads->create(sub { while (1) { } });
+$thr = threads->create('test_loop');
+my $thr2 = threads->create('test_loop');
 ok($thr && $thr2, 'Thread created');
 $thr->detach();
 ok(! threads->cancel(), 'Threads cancelled');
@@ -59,8 +60,8 @@ threads->yield();
 sleep(1);
 ok(! $thr->is_running(), 'Thread not running');
 
-$thr = threads->create(sub { while (1) { } });
-$thr2 = threads->create(sub { while (1) { } });
+$thr = threads->create('test_loop');
+$thr2 = threads->create('test_loop');
 ok($thr && $thr2, 'Thread created');
 $thr2->detach();
 ok(! threads->cancel($thr2, $thr->tid()), 'Threads cancelled');
@@ -73,6 +74,7 @@ ok($thr2->is_detached(), 'Thread detached');
 
 SKIP:
 {
+    eval 'use Thread::Suspend';
     skip('Thread::Suspend not available', 4) unless threads->can('suspend');
 
     $thr = threads->create(sub { threads->self()->suspend(); });
