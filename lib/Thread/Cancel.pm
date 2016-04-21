@@ -3,7 +3,7 @@ package Thread::Cancel; {
 use strict;
 use warnings;
 
-our $VERSION = '1.08';
+our $VERSION = '1.09';
 
 use threads 1.39;
 
@@ -68,7 +68,7 @@ Thread::Cancel - Cancel (i.e., kill) threads
 
 =head1 VERSION
 
-This document describes Thread::Cancel version 1.08
+This document describes Thread::Cancel version 1.09
 
 =head1 SYNOPSIS
 
@@ -172,7 +172,7 @@ Thread::Cancel Discussion Forum on CPAN:
 L<http://www.cpanforum.com/dist/Thread-Cancel>
 
 Annotated POD for Thread::Cancel:
-L<http://annocpan.org/~JDHEDDEN/Thread-Cancel-1.08/lib/Thread/Cancel.pm>
+L<http://annocpan.org/~JDHEDDEN/Thread-Cancel-1.09/lib/Thread/Cancel.pm>
 
 Source repository:
 L<http://code.google.com/p/thread-cancel/>
