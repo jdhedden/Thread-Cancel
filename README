@@ -1,4 +1,4 @@
-Thread::Cancel version 1.05
+Thread::Cancel version 1.06
 ===========================
 
 This module adds the capability to cancel (i.e., kill) a thread.
@@ -23,7 +23,7 @@ This module requires these other modules:
 
 COPYRIGHT AND LICENCE
 
-Copyright 2006 Jerry D. Hedden <jdhedden AT cpan DOT org>
+Copyright 2006 - 2007 Jerry D. Hedden <jdhedden AT cpan DOT org>
 
 This program is free software; you can redistribute it and/or modify it under
 the same terms as Perl itself.

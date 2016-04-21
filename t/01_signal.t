@@ -1,16 +1,10 @@
 use strict;
 use warnings;
 
-BEGIN {
-    if ($] > 5.008) {
-        require threads;
-        import threads;
-        require threads::shared;
-        import threads::shared;
-    }
-}
+use threads;
+use threads::shared;
 
-use Test::More 'no_plan';
+use Test::More 'tests' => 9;
 
 use_ok('Thread::Cancel', 'SIGILL');
 
@@ -25,7 +19,7 @@ ok(! $thr->is_running(), 'Thread not running');
 ok($thr->is_detached(), 'Thread detached');
 
 SKIP: {
-    skip('ok broken in 5.8.0', 2) if ($] == 5.008);
+    skip('Test::More broken WRT threads in 5.8.0', 2) if ($] == 5.008);
     $SIG{'ILL'} = sub {
         is(shift, 'ILL', 'Received cancel signal');
         threads->exit();

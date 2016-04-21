@@ -1,13 +1,16 @@
 use strict;
 use warnings;
 
-use Test::More 'no_plan';
+use threads;
+use threads::shared;
+
+use Test::More 'tests' => 28;
 
 use_ok('Thread::Cancel');
 
 eval {
     require Thread::Suspend;
-    import Thread::Suspend;
+    Thread::Suspend->import();
 };
 
 if ($Thread::Cancel::VERSION) {
