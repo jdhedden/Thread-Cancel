@@ -3,7 +3,7 @@ package Thread::Cancel; {
 use strict;
 use warnings;
 
-our $VERSION = 1.03;
+our $VERSION = 1.04;
 
 use threads 1.39;
 
@@ -46,16 +46,12 @@ sub threads::cancel
     }
 
     # Cancel threads
-    if (threads->can('resume')) {
-        foreach my $thr (@threads) {
-            $thr->detach() if (! $thr->is_detached());
-            $thr->kill($SIGNAL);
+    my $resumable = threads->can('resume');
+    foreach my $thr (@threads) {
+        $thr->detach() if (! $thr->is_detached());
+        $thr->kill($SIGNAL);
+        if ($resumable) {
             $thr->resume() if ($thr->is_suspended());
-        }
-    } else {
-        foreach my $thr (@threads) {
-            $thr->detach() if (! $thr->is_detached());
-            $thr->kill($SIGNAL);
         }
     }
 }
@@ -72,7 +68,7 @@ Thread::Cancel - Cancel (i.e., kill) threads
 
 =head1 VERSION
 
-This document describes Thread::Cancel version 1.03
+This document describes Thread::Cancel version 1.04
 
 =head1 SYNOPSIS
 
@@ -87,8 +83,8 @@ This document describes Thread::Cancel version 1.03
 =head1 DESCRIPTION
 
 This module adds cancellation capabilities for threads.  Cancelled threads are
-terminated using C<threads->exit()>.  The thread is then detached, and hence
-automatically cleaned up.
+terminated using C<threads-E<gt>exit()>.  The thread is then detached, and
+hence automatically cleaned up.
 
 Threads that are suspended using L<Thread::Suspend> do not need to be
 I<resumed> in order to be cancelled.
@@ -176,7 +172,7 @@ Thread::Cancel Discussion Forum on CPAN:
 L<http://www.cpanforum.com/dist/Thread-Cancel>
 
 Annotated POD for Thread::Cancel:
-L<http://annocpan.org/~JDHEDDEN/Thread-Cancel-1.03/lib/Thread/Cancel.pm>
+L<http://annocpan.org/~JDHEDDEN/Thread-Cancel-1.04/lib/Thread/Cancel.pm>
 
 L<threads>, L<threads::shared>
 
