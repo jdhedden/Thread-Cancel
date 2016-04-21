@@ -1,4 +1,4 @@
-Thread::Cancel version 1.01
+Thread::Cancel version 1.02
 ===========================
 
 This module adds the capability to cancel (i.e., kill) a thread.

@@ -14,6 +14,7 @@ ok($thr->is_running(), 'Thread running');
 ok(! $thr->is_detached(), 'Thread not detached');
 ok(! $thr->cancel(), 'Thread cancelled');
 threads->yield();
+sleep(1);
 ok(! $thr->is_running(), 'Thread not running');
 ok($thr->is_detached(), 'Thread detached');
 
@@ -25,5 +26,6 @@ $SIG{'ILL'} = sub {
 $thr = threads->create(sub { while (1) { } });
 ok(! $thr->cancel(), 'Sent cancel signal');
 threads->yield();
+sleep(1);
 
 # EOF

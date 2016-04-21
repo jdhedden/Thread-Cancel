@@ -22,11 +22,13 @@ ok($thr->is_running(), 'Thread running');
 ok(! $thr->is_detached(), 'Thread not detached');
 ok(! $thr->cancel(), 'Thread cancelled');
 threads->yield();
+sleep(1);
 ok(! $thr->is_running(), 'Thread not running');
 ok($thr->is_detached(), 'Thread detached');
 
 $thr = threads->create(sub { threads->self()->cancel(); });
 threads->yield();
+sleep(1);
 ok(! $thr->is_running(), 'Thread not running');
 ok($thr->is_detached(), 'Thread detached');
 
@@ -36,12 +38,14 @@ ok($thr && $thr2, 'Thread created');
 $thr->detach();
 ok(! threads->cancel(), 'Threads cancelled');
 threads->yield();
+sleep(1);
 ok(! $thr2->is_running(), 'Thread not running');
 ok($thr2->is_detached(), 'Thread detached');
 ok($thr->is_running(), 'Thread still running');
 ok($thr->is_detached(), 'Thread detached');
 ok(! $thr->cancel(), 'Thread cancelled');
 threads->yield();
+sleep(1);
 ok(! $thr->is_running(), 'Thread not running');
 
 $thr = threads->create(sub { while (1) { } });
@@ -50,6 +54,7 @@ ok($thr && $thr2, 'Thread created');
 $thr2->detach();
 ok(! threads->cancel($thr2, $thr->tid()), 'Threads cancelled');
 threads->yield();
+sleep(1);
 ok(! $thr->is_running(), 'Thread not running');
 ok($thr->is_detached(), 'Thread detached');
 ok(! $thr2->is_running(), 'Thread not running');
@@ -61,9 +66,11 @@ SKIP:
 
     $thr = threads->create(sub { threads->self()->suspend(); });
     threads->yield();
+    sleep(1);
     ok($thr->is_suspended(), 'Thread suspended');
     ok(! $thr->cancel(), 'Thread cancelled');
     threads->yield();
+    sleep(1);
     ok(! $thr->is_running(), 'Thread not running');
     ok($thr->is_detached(), 'Thread detached');
 }
