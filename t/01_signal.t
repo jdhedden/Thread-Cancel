@@ -39,4 +39,6 @@ SKIP: {
     sleep(1);
 }
 
+exit(0);
+
 # EOF

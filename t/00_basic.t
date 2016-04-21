@@ -86,4 +86,6 @@ SKIP:
     ok($thr->is_detached(), 'Thread detached');
 }
 
+exit(0);
+
 # EOF
