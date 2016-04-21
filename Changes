@@ -1,5 +1,8 @@
 Revision history for Perl extension Thread::Cancel.
 
+1.05 -
+	- Check for $Config{useithreads}
+
 1.04 Thu Oct 12 11:23:09 EDT 2006
 	- Added example and POD tests
 
