@@ -1,5 +1,8 @@
 Revision history for Perl extension Thread::Cancel.
 
+1.07 Fri Feb 22 22:12:47 2008
+	- Allow installation on non-threaded Perls
+
 1.06 Wed Feb 20 17:29:39 2008
 	- Build/test updates
 

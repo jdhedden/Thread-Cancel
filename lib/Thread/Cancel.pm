@@ -3,7 +3,7 @@ package Thread::Cancel; {
 use strict;
 use warnings;
 
-our $VERSION = '1.06';
+our $VERSION = '1.07';
 
 use threads 1.39;
 
@@ -68,7 +68,7 @@ Thread::Cancel - Cancel (i.e., kill) threads
 
 =head1 VERSION
 
-This document describes Thread::Cancel version 1.06
+This document describes Thread::Cancel version 1.07
 
 =head1 SYNOPSIS
 
@@ -162,7 +162,7 @@ module.
 
 Perl 5.8.0 or later
 
-L<threads> 1.34 or later
+L<threads> 1.39 or later
 
 L<Test::More> 0.50 or later (for installation)
 
@@ -172,7 +172,10 @@ Thread::Cancel Discussion Forum on CPAN:
 L<http://www.cpanforum.com/dist/Thread-Cancel>
 
 Annotated POD for Thread::Cancel:
-L<http://annocpan.org/~JDHEDDEN/Thread-Cancel-1.06/lib/Thread/Cancel.pm>
+L<http://annocpan.org/~JDHEDDEN/Thread-Cancel-1.07/lib/Thread/Cancel.pm>
+
+Source repository:
+L<http://code.google.com/p/thread-cancel/>
 
 L<threads>, L<threads::shared>
 
@@ -182,7 +185,7 @@ Jerry D. Hedden, S<E<lt>jdhedden AT cpan DOT orgE<gt>>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2006 - 2007 Jerry D. Hedden. All rights reserved.
+Copyright 2006 - 2008 Jerry D. Hedden. All rights reserved.
 
 This program is free software; you can redistribute it and/or modify it under
 the same terms as Perl itself.
