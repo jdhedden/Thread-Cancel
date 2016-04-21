@@ -1,8 +1,14 @@
 use strict;
 use warnings;
 
-use threads;
-use threads::shared;
+BEGIN {
+    if ($] > 5.008) {
+        require threads;
+        import threads;
+        require threads::shared;
+        import threads::shared;
+    }
+}
 
 use Test::More 'no_plan';
 
@@ -18,14 +24,17 @@ sleep(1);
 ok(! $thr->is_running(), 'Thread not running');
 ok($thr->is_detached(), 'Thread detached');
 
-$SIG{'ILL'} = sub {
-    is(shift, 'ILL', 'Received cancel signal');
-    threads->exit();
-};
+SKIP: {
+    skip('ok broken in 5.8.0', 2) if ($] == 5.008);
+    $SIG{'ILL'} = sub {
+        is(shift, 'ILL', 'Received cancel signal');
+        threads->exit();
+    };
 
-$thr = threads->create(sub { while (1) { } });
-ok(! $thr->cancel(), 'Sent cancel signal');
-threads->yield();
-sleep(1);
+    $thr = threads->create(sub { while (1) { } });
+    ok(! $thr->cancel(), 'Sent cancel signal');
+    threads->yield();
+    sleep(1);
+}
 
 # EOF

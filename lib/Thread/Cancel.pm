@@ -3,9 +3,9 @@ package Thread::Cancel; {
 use strict;
 use warnings;
 
-our $VERSION = 1.02;
+our $VERSION = 1.03;
 
-use threads 1.36;
+use threads 1.39;
 
 my $SIGNAL = 'KILL';    # Default cancellation signal
 
@@ -72,7 +72,7 @@ Thread::Cancel - Cancel (i.e., kill) threads
 
 =head1 VERSION
 
-This document describes Thread::Cancel version 1.02
+This document describes Thread::Cancel version 1.03
 
 =head1 SYNOPSIS
 
@@ -176,7 +176,7 @@ Thread::Cancel Discussion Forum on CPAN:
 L<http://www.cpanforum.com/dist/Thread-Cancel>
 
 Annotated POD for Thread::Cancel:
-L<http://annocpan.org/~JDHEDDEN/Thread-Cancel-1.02/lib/Thread/Cancel.pm>
+L<http://annocpan.org/~JDHEDDEN/Thread-Cancel-1.03/lib/Thread/Cancel.pm>
 
 L<threads>, L<threads::shared>
 

@@ -1,4 +1,4 @@
-Thread::Cancel version 1.02
+Thread::Cancel version 1.03
 ===========================
 
 This module adds the capability to cancel (i.e., kill) a thread.
@@ -18,7 +18,7 @@ This module requires Perl 5.8.0 or later.
 
 This module requires these other modules:
 
-    threads version 1.36 or later
+    threads version 1.39 or later
     Test::More 0.50 or later (for installation)
 
 COPYRIGHT AND LICENCE
