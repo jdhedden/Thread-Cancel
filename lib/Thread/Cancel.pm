@@ -168,10 +168,15 @@ L<Test::More> 0.50 or later (for installation)
 
 =head1 SEE ALSO
 
-Thread::Cancel Discussion Forum on CPAN:
-L<http://www.cpanforum.com/dist/Thread-Cancel>
+Thread::Cancel on MetaCPAN:
+L<https://metacpan.org/release/Thread-Cancel>
+
+Code repository:
+L<https://github.com/jdhedden/Thread-Cancel>
 
 L<threads>, L<threads::shared>
+
+Sample code in the I<examples> directory of this distribution on CPAN.
 
 =head1 AUTHOR
 
