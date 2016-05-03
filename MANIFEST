@@ -7,4 +7,3 @@ t/00_basic.t
 t/01_signal.t
 t/99_pod.t
 examples/cancel.pl
-META.yml                                 Module meta-data (added by MakeMaker)
